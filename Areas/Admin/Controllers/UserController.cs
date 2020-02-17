@@ -10,8 +10,8 @@ namespace TimKiemViecLam.Areas.Admin.Controllers
 {
     public class UserController : BaseController
     {
-        // GET: Admin/User
-      /*  public ActionResult Index(string seaching, int? idRole, int page = 1, int pageSize = 5,long? selectedI = null)
+        /*// GET: Admin/User
+       public ActionResult Index(string seaching, int? idRole, int page = 1, int pageSize = 5,long? selectedI = null)
         {
             var dao = new UserDao();
             var model = dao.listAllpage(seaching, page, pageSize, idRole);
@@ -60,57 +60,57 @@ namespace TimKiemViecLam.Areas.Admin.Controllers
             });
         }*/
 
-       /* [HttpPost]
-        public ActionResult Create(Account user)
-        {
-            if (ModelState.IsValid)
-            {
-                var dao = new UserDao();
-                long id = dao.Insert(user);
-                if (id > 0)
-                {
-                    SetAlert("Thêm User thành công", "success");
-                    return RedirectToAction("Index", "User");
-                }
-                else
-                {
-                    ModelState.AddModelError("", "Thêm User không thành công");
-                }
+        /* [HttpPost]
+         public ActionResult Create(Account user)
+         {
+             if (ModelState.IsValid)
+             {
+                 var dao = new UserDao();
+                 long id = dao.Insert(user);
+                 if (id > 0)
+                 {
+                     SetAlert("Thêm User thành công", "success");
+                     return RedirectToAction("Index", "User");
+                 }
+                 else
+                 {
+                     ModelState.AddModelError("", "Thêm User không thành công");
+                 }
 
-            }
-            return View("Index");
-        }
-        [HttpPost]
-        public ActionResult Edit(Account user)
-        {
-            if (ModelState.IsValid)
-            {
-                var dao = new UserDao();
-                
-                var result = dao.Edit(user);
-                if (result == true  )
-                {
-                    if(user.idRole != 1)
-                    {
-                        SetAlert("Sửa User thành công", "success");
-                        return Redirect("/Admin/Home/HomeMember");
-                      
-                    }
-                    else
-                    {
-                        SetAlert("Sửa User thành công", "success");
-                        return RedirectToAction("index");
-                    }
-                    
-                }
-               
-                else
-                {
-                    ModelState.AddModelError("", "Cập nhật không thành công");
-                }
-            }
-            return View("index");
+             }
+             return View("Index");
+         }
+         [HttpPost]
+         public ActionResult Edit(Account user)
+         {
+             if (ModelState.IsValid)
+             {
+                 var dao = new UserDao();
 
-        }*/
+                 var result = dao.Edit(user);
+                 if (result == true  )
+                 {
+                     if(user.idRole != 1)
+                     {
+                         SetAlert("Sửa User thành công", "success");
+                         return Redirect("/Admin/Home/HomeMember");
+
+                     }
+                     else
+                     {
+                         SetAlert("Sửa User thành công", "success");
+                         return RedirectToAction("index");
+                     }
+
+                 }
+
+                 else
+                 {
+                     ModelState.AddModelError("", "Cập nhật không thành công");
+                 }
+             }
+             return View("index");
+
+         }*/
     }
 }

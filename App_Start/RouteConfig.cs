@@ -14,10 +14,9 @@ namespace TimKiemViecLam
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                name: "Default",
+                name: "TinViecLam",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
-                namespaces: new[] { "TimKiemViecLam.Controllers" }
+                defaults: new { controller = "TinViecLam", action = "DetailIndex", id = UrlParameter.Optional }
             );
         }
     }

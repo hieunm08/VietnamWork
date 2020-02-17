@@ -1,7 +1,6 @@
-﻿@model Model.EF.TaiKhoanModel
-
+﻿@model TimKiemViecLam.Areas.Admin.Models.LoginModel
 @{
-    ViewBag.Title = "Index";
+    Layout = null;
 }
 
 <!doctype html>
@@ -55,12 +54,13 @@
             <div class="card-body">
                 @using (Html.BeginForm("Login", "Login", FormMethod.Post))
                 {
+                    @Html.ValidationSummary(false, "", new { @class = "form-control form-control-lg" });
                     <div class="form-group">
-                        @Html.TextBoxFor(model => model.TenDangNhap, new { @class = "form-control form-control-lg", @placeholder = "Tên đăng nhập", @autocomplete = "off", @type = "text" })
+                        @Html.TextBoxFor(model => model.UserName, new { @class = "form-control form-control-lg", @placeholder = "Tên đăng nhập", @autocomplete = "off", @type = "text" })
 
                     </div>
                     <div class="form-group">
-                        @Html.TextBoxFor(model => model.MatKhau, new { @class = "form-control form-control-lg", @type = "Password", @placeholder = "Mật khẩu" })
+                        @Html.TextBoxFor(model => model.PassWord, new { @class = "form-control form-control-lg", @type = "Password", @placeholder = "Mật khẩu" })
 
                     </div>
                     @*<div class="form-group">
@@ -91,4 +91,5 @@
 </body>
 
 </html>
+
 

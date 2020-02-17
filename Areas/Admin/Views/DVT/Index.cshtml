@@ -1,15 +1,13 @@
-﻿@model PagedList.IPagedList<Models.EF.DVT>
-@using PagedList.Mvc
-
+﻿
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
-    var user_Sesion = Session["User_Session"] as QuanLiCafe.Common.UserLogin;
+    var user_Sesion = Session["User_Session"] as TimKiemViecLam.Common.UserLogin;
 }
 @section header{
     Đơn vị tính}
 <div class="row">
-    @if (user_Sesion.idRoel != 1)
+    @if (user_Sesion.ID_LoaiTaiKhoan != 1)
     {
 
     }
@@ -86,7 +84,7 @@
                             <th scope="col" style="width:13em">Tên nhóm</th>
                             <th scope="col" style="width:19em">Mô tả</th>
                             <th scope="col" style="width:13em">Trạng thái</th>
-                            @if (user_Sesion.idRoel != 1)
+                            @if (user_Sesion.ID_LoaiTaiKhoan != 1)
                             {
 
                             }
@@ -110,7 +108,7 @@
                                     <td>
                                         <a href="#" class="btn-active" data-id="@item.DVT_id">@(item.status ? "Kích hoạt" : "Khóa")</a>
                                     </td>
-                                    @if (user_Sesion.idRoel != 1)
+                                    @if (user_Sesion.ID_LoaiTaiKhoan != 1)
                                     {
 
                                     }

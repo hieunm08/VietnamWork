@@ -1,6 +1,4 @@
 ﻿
-@model PagedList.IPagedList<Models.ViewModel.UserLisst>
-@using PagedList.Mvc
 @{
     ViewBag.Title = "User";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
@@ -70,7 +68,6 @@
                         }
                     </tbody>
                 </table>
-                @Html.PagedListPager(Model, page => Url.Action("Index", new { page, seaching = @ViewBag.seaching, idRole = @ViewBag.idRole }))
             </div>
         </div>
     </div>

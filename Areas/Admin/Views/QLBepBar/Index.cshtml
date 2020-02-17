@@ -1,9 +1,8 @@
-﻿@model PagedList.IPagedList<Models.ViewModel.ViewBill>
-@using PagedList.Mvc
+﻿
 @{
     ViewBag.Title = "Indexbep";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
-    var user_Sesion = Session["User_Session"] as QuanLiCafe.Common.UserLogin;
+    var user_Sesion = Session["User_Session"] as TimKiemViecLam.Common.UserLogin;
 }
 
 
@@ -34,7 +33,7 @@
                             <th scope="col">Tên món</th>
                             <th scope="col">Số lượng</th>
                             <th scope="col">Giờ vào</th>
-                            @if(@user_Sesion.idRoel !=4 && @user_Sesion.idRoel != 1)
+                            @if(@user_Sesion.ID_LoaiTaiKhoan !=4 && @user_Sesion.ID_LoaiTaiKhoan != 1)
                             {
 
                             }

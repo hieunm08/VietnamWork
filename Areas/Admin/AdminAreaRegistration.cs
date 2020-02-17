@@ -17,8 +17,7 @@ namespace TimKiemViecLam.Areas.Admin
             context.MapRoute(
                 "Admin_default",
                 "Admin/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional },
-                 new[] { "TimKiemViecLam.Areas.Admin.Controllers" }
+                new { action = "Index", id = UrlParameter.Optional }
             );
         }
     }

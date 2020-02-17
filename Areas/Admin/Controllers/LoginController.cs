@@ -7,6 +7,7 @@ using Model.Dao;
 using Model.EF;
 using TimKiemViecLam.Areas.Admin.Models;
 using TimKiemViecLam.Common;
+using TimKiemViecLam.Areas;
 
 namespace TimKiemViecLam.Areas.Admin.Controllers
 {
@@ -18,42 +19,54 @@ namespace TimKiemViecLam.Areas.Admin.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Login(TaiKhoanModel model)
+        public ActionResult Login(LoginModel model)
         {
             {
                 if (ModelState.IsValid)
                 {
                     var dao = new TaiKhoanDAO();
-                    int result = dao.Login(model.TenDangNhap, model.MatKhau);
-                    if (result == 1)
+                    var result = dao.Login(model.UserName, model.PassWord);
+                    if (result !=null)
                     {
-                        var user = dao.GetbyUser(model.TenDangNhap);
-                        var user_Sesion = new UserLogin();
-                        user_Sesion.TenDangNhap = user.TenDangNhap;
-                        user_Sesion.HoTen = user.HoTen;
-                        user_Sesion.ID_LoaiTaiKhoan = user.ID_LoaiTaiKhoan;
-                        user_Sesion.ID_TaiKhoan = user.ID_TaiKhoan;
 
-                        Session.Add("User_Session", user_Sesion);
-                        //
-                        if (user.ID_LoaiTaiKhoan != 1)
+
+                        var user_Sesion = new UserLogin();
+
+                        if (result is UngVien)
                         {
-                            return Redirect("/Admin/Home/HomeMember");
+                            UngVien ungVien = (UngVien) result ;
+                            user_Sesion.TenDangNhap = ungVien.TenDangNhap;
+                            user_Sesion.HoTen = ungVien.HoTen;
+                            user_Sesion.IsUngVien = ungVien.IsUngVien;
+                            Session.Add("User_Session", user_Sesion);
+
+                            return RedirectToAction("Index", "Home");
                         }
-                        else
+                        if (result is CongTy)
                         {
+                            CongTy congTy = (CongTy)result;
+                            user_Sesion.TenDangNhap = congTy.TenDangNhap;
+                            user_Sesion.HoTen = congTy.TenCongTy;
+                            user_Sesion.IsUngVien = congTy.IsTuyenDung;
+                            Session.Add("User_Session", user_Sesion);
                             return RedirectToAction("Index", "Home");
                         }
 
-                    }
-                    else if (result == 0)
-                    {
-                        ModelState.AddModelError("", "Tài khoản không đúng !");
+                        if (result is TaiKhoan)
+
+                        {
+                            TaiKhoan taiKhoanAdmin = (TaiKhoan)result;
+                            user_Sesion.TenDangNhap = taiKhoanAdmin.TenDangNhap;
+                            user_Sesion.HoTen = taiKhoanAdmin.HoTen;
+                            user_Sesion.ID_LoaiTaiKhoan = taiKhoanAdmin.ID_LoaiTaiKhoan;
+                            Session.Add("User_Session", user_Sesion);
+
+                            return Redirect("/Admin/Home/Index");
+                        }
                     }
                     else
-                        if (result == -1)
                     {
-                        ModelState.AddModelError("", "Sai mật khẩu !");
+                        ModelState.AddModelError("", "Tài khoản hoặc  mật khẩu  không đúng !");
                     }
                 }
                 return View("index");
@@ -61,4 +74,4 @@ namespace TimKiemViecLam.Areas.Admin.Controllers
             }
         }
     }
-    }
+}
